@@ -12,12 +12,13 @@ module.exports = async () => {
     await wrappedEther.mintWeth({ from: account, value: value });
     console.log(`balance after: ${wrappedBalance}`);
 
-    console.log("----");
+    console.log("------");
     console.log("now getting Eth back");
-    console.log(`balance weth after: ${wrappedBalance}`);
     await wrappedEther.retrieveEther(value);
     wrappedBalance = await wrappedEther.balanceOf(account);
     ethBalance = await web3.eth.getBalance(account);
+    console.log(`balance ETH after: ${ethBalance}`);
+    console.log(`balance weth after: ${wrappedBalance}`);
   } catch (error) {
     console.log(error);
   }
